@@ -2,11 +2,13 @@
 <body>
     <div class='header'>
         <ul>
-            <li><a href='/sessions/<%= current_user.id %>'>Logout</a></li>
+            <li><a href='/sessions/<%= @current_user.id %>'>Logout</a></li>
             <li>|</li>
             <li><a href="/fakehelp">Help</a></li>
             <li>|</li>
-            <li><a href="/cart">View cart</a></li>
+            <li><a href='/store'>Your Store</a></li>
+            <li>|</li>
+            <li><a href="/cart">View cart</a> ( <%= @current_user.carts.count %> )</li>
             <li>|</li>
             <li><a href="/home">Home</a></li>
         </ul>
@@ -24,12 +26,19 @@
                         <th>Item name</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Action</th>
                     </tr>
                     <% @store.all.each do |i| %>
                     <tr>
-                        <td><%= i.name %></td>
+                        <td><a href='edit/<%= i.id %>'><%= i.name %></a></td>
                         <td><%= i.price %></td>
                         <td><%= i.quantity %></td>
+                        <td>
+                            <form action='/removeitem/<%= i.id %>' method='post'>
+                                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                <input type='submit' value='Remove Item'>
+                            </form>
+                        </td>
                     </tr>
                     <% end %>
                 </table>

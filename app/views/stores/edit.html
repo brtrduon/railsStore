@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "index.css" %>
+<body>
+    <div class='header'>
+        <ul>
+            <li><a href='/sessions/<%= @current_user.id %>'>Logout</a></li>
+            <li>|</li>
+            <li><a href="/fakehelp">Help</a></li>
+            <li>|</li>
+            <li><a href='/store'>Your Store</a></li>
+            <li>|</li>
+            <li><a href="/cart">View cart</a> ( <%= @current_user.carts.count %> )</li>
+            <li>|</li>
+            <li><a href="/home">Home</a></li>
+        </ul>
+    </div>
+    <div class='main'>
+        <img class='backgroundimg' src='/assets/img1.jpg' alt='img1.jpg'>
+        <div class='body'>
+            <div class='bodytop'>
+                <h1>Edit Item</h1>
+            </div>
+            <div class='stuff'>
+                <form action='/edit/<%= @item.id %>' method='post'>
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                    <label>Item name:</label>
+                    <input type='text' name='store[name]' value='<%= @item.name %>'>
+                    <br><br>
+                    <label>Price:</label>
+                    <input type='text' name='store[price]' value='<%= @item.price %>'>
+                    <br><br>
+                    <label>Quantity:</label>
+                    <input type='number' name='store[quantity]' value='<%= @item.quantity %>'>
+                    <br><br>
+                    <input type='submit' value='Update Item'>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

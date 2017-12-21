@@ -2,6 +2,9 @@ class CartsController < ApplicationController
 
     def addtocart
         Cart.create cart_params
+        @item = Store.find_by(id: params[:id])
+            @item.quantity -= 1
+            @item.save
         redirect_to '/home'
     end
 
@@ -15,9 +18,19 @@ class CartsController < ApplicationController
         @cart = Cart.where(user_id: current_user.id)
     end
 
-    def giveMoney
-        @cart = Cart.find(user_id: current_user.id)
+    def delete
+        @cart = Cart.find_by(id: params[:id])
+        @item = Store.find_by(id: @cart.store_id)
+            @item.quantity += 1
+            @item.save
+        @cart = Cart.delete(params[:id])
+        redirect_to '/cart'
+    end
 
+    def giveMoney
+        @current_user = current_user
+        @cart = Cart.delete_all(user_id: current_user.id)
+        redirect_to '/home'
     end
 
 

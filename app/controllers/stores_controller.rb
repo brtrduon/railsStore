@@ -6,6 +6,7 @@ class StoresController < ApplicationController
     end
 
     def store
+        @current_user = current_user
         @store = Store.where(user_id: current_user.id)
     end
 
@@ -24,6 +25,29 @@ class StoresController < ApplicationController
 
     def show
         @item = Store.where(id: params[:id])
+    end
+
+    def edit
+        @current_user = current_user
+        @item = Store.find_by(id: params[:id])
+    end
+
+    def update
+        @item = Store.find(params[:id])
+        @item.update(store_params)
+        if @item.valid?
+            @item.save
+            redirect_to '/store'
+        else
+            flash[:errors] = @item.errors.full_messages
+            redirect_to :back
+        end
+    end
+
+    def removeitem
+        @item = Store.find_by(id: params[:id])
+        @item.delete
+        redirect_to '/store'
     end
 
 

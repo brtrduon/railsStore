@@ -29,11 +29,10 @@
                 <hr>
             <% end %>
             <br><br>
-            <a href='/home'><button>No I no give you money</button></a>
+            <a href='/cart'><button>No I no give you money</button></a>
             <br><br>
-            <form action='/checkout' method='post'>
+            <form action='/checkout/<%= current_user.id %>' method='post'>
                 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                <input type="hidden" name="cart[store_id]">
                 <input type='submit' value='Yes take my money pls'>
             </form>
         </div>

@@ -32,13 +32,17 @@
                     <td><a href='/store/<%= i.id %>/show'><%= i.name %></a></td>
                     <td>$<%= i.price %></td>
                     <td><%= i.quantity %></td>
-                    <td>
-                        <form action='/addtocart/<%= i.id %>' method='post'>
-                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                            <input type="hidden" name="cart[store_id]" value="<%= i.id %>">
-                            <input type='submit' value='Add to Cart'>
-                        </form>
-                    </td>
+                    <% if i.quantity > 0 %>
+                        <td>
+                            <form action='/addtocart/<%= i.id %>' method='post'>
+                                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                <input type="hidden" name="cart[store_id]" value="<%= i.id %>">
+                                <input type='submit' value='Add to Cart'>
+                            </form>
+                        </td>
+                    <% else %>
+                        <td>[Temporarily out of stock]</td>
+                    <% end %>
                 </tr>
                 <% end %>
             </table>

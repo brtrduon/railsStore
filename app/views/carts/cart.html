@@ -23,10 +23,20 @@
                 <h3>Item name: <%= i.store.name %></h3>
                 <h3>Price: $<%= i.store.price %></h3>
                 <h3>Seller: <%= i.store.user.username %></h3>
+                <form action='/delete/<%= i.id %>' method='post'>
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                    <input type="hidden" name="<%= i.id %>" value="<%= i.id %>">
+                    <input type='submit' value='Remove Item'>
+                </form>
                 <hr>
             <% end %>
             <br><br>
-            <a href='/checkout'>Proceed to checkout</a>
+            <% if not @cart.count == 0 %>
+                <a href='/checkout'>Proceed to checkout</a>
+            <% else %>
+                <h3>Your cart is empty, breh</h3>
+                <h4>Go buy something and gib me money pls</h4>
+            <% end %>
         </div>
     </div>
 </body>

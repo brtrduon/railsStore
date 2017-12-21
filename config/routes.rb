@@ -51,7 +51,16 @@ Rails.application.routes.draw do
 
   get 'checkout' => 'carts#checkout'
 
-  post 'checkout' => 'carts#giveMoney'
+  post 'delete/:id' => 'carts#delete'
+  
+  post 'checkout/:id' => 'carts#giveMoney'
+
+  post 'removeitem/:id' => 'stores#removeitem'
+
+  get 'edit/:id' => 'stores#edit'
+
+  post 'edit/:id' => 'stores#update'
+
 
 
   get 'sessions/:id' => 'sessions#destroy'
