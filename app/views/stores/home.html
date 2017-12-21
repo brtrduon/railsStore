@@ -1,0 +1,47 @@
+<%= stylesheet_link_tag "index.css" %>
+<body>
+    <div class='header'>
+        <ul>
+            <li><a href='/sessions/<%= @current_user.id %>'>Logout</a></li>
+            <li>|</li>
+            <li><a href="/fakehelp">Help</a></li>
+            <li>|</li>
+            <li><a href='/store'>Your Store</a></li>
+            <li>|</li>
+            <li><a href="/cart">View cart</a> ( <%= @current_user.carts.count %> )</li>
+            <li>|</li>
+            <li><a href="/home">Home</a></li>
+        </ul>
+    </div>
+    <div class='main'>
+        <img class='backgroundimg' src='/assets/img1.jpg' alt='img1.jpg'>
+        <div class='body'>
+            <div class='bodytop'>
+                <h1>Home</h1>
+            </div>
+            <h3>Stuff for sale</h3>
+            <table>
+                <tr>
+                    <th>Item name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+                <% @store.all.each do |i| %>
+                <tr>
+                    <td><a href='/store/<%= i.id %>/show'><%= i.name %></a></td>
+                    <td>$<%= i.price %></td>
+                    <td><%= i.quantity %></td>
+                    <td>
+                        <form action='/addtocart/<%= i.id %>' method='post'>
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                            <input type="hidden" name="cart[store_id]" value="<%= i.id %>">
+                            <input type='submit' value='Add to Cart'>
+                        </form>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
+</body>

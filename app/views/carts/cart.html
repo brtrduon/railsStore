@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "index.css" %>
+<body>
+    <div class='header'>
+        <ul>
+            <li><a href='/sessions/<%= @current_user.id %>'>Logout</a></li>
+            <li>|</li>
+            <li><a href="/fakehelp">Help</a></li>
+            <li>|</li>
+            <li><a href='/store'>Your Store</a></li>
+            <li>|</li>
+            <li><a href="/cart">View cart</a> ( <%= current_user.carts.count %> )</li>
+            <li>|</li>
+            <li><a href="/home">Home</a></li>
+        </ul>
+    </div>
+    <div class='main'>
+        <img class='backgroundimg' src='/assets/img1.jpg' alt='img1.jpg'>
+        <div class='body'>
+            <div class='bodytop'>
+                <h1>Your Cart</h1>
+            </div>
+            <% @cart.all.each do |i| %>
+                <h3>Item name: <%= i.store.name %></h3>
+                <h3>Price: $<%= i.store.price %></h3>
+                <h3>Seller: <%= i.store.user.username %></h3>
+                <hr>
+            <% end %>
+            <br><br>
+            <a href='/checkout'>Proceed to checkout</a>
+        </div>
+    </div>
+</body>

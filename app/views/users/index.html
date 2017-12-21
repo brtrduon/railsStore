@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag "index.css" %>
+<body>
+    <div class='header'>
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li>|</li>
+            <li><a href="/register">Register</a></li>
+            <li>|</li>
+            <li><a href="/help">Help</a></li>
+            <li>|</li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+    <div class='main'>
+        <img class='backgroundimg' src='/assets/img1.jpg' alt='img1.jpg'>
+        <div class='body'>
+            <div class='bodytop'>
+                <h1>Home</h1>
+            </div>
+            <h3>Things that you can potentially buy if you were logged in</h3>
+            <h5>(But clearly you are NOT logged in)</h5>
+            <table>
+                <tr>
+                    <th>Item name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                <% @store.each do |i| %>
+                <tr>
+                    <td><%= i.name %></a></td>
+                    <td>$<%= i.price %></td>
+                    <td><%= i.quantity %></td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
+</body>

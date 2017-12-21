@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag "register.css" %>
+<body>
+    <div class='header'>
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li>|</li>
+            <li><a href="/register">Register</a></li>
+            <li>|</li>
+            <li><a href="/help">Help</a></li>
+            <li>|</li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+    <div class='left'>
+        <form action='/register' method='post'>
+            <h3>REGISTER</h3>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="text" name="user[username]" placeholder="choose a username">
+            <input type="text" name="user[first_name]" placeholder="First Name">
+            <input type="text" name="user[last_name]" placeholder="Last Name">
+            <input type="password" name="user[password]" placeholder="Password">
+            <input type="password" name="user[password_confirmation]" placeholder="Password Confirmation">
+            <input type="email" name="user[email]" placeholder="Email">
+            <input type='submit' value='Register'>
+        </form>
+    </div>
+    <div class='upperbot'>
+        <p><a href="/reset">reset password</a></p>
+    </div>
+    <div class='bot'>
+        <p>Already registered?</p>
+        <a href="/login">Click here</a>
+        <div class='evenmoar'>
+            <p>to log in</p>
+        </div>
+    </div>
+</body>
