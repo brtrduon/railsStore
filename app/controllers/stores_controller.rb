@@ -11,6 +11,7 @@ class StoresController < ApplicationController
     end
 
     def add
+        @current_user = current_user
     end
 
     def create
@@ -24,6 +25,7 @@ class StoresController < ApplicationController
     end
 
     def show
+        @current_user = current_user
         @item = Store.where(id: params[:id])
     end
 

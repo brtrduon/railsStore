@@ -48,11 +48,6 @@ a {
     position: relative;
     left: 330px;
 }
-.upperbot {
-    position: relative;
-    left: 380px;
-    top: 40px;
-}
 .bot {
     position: relative;
     left: 45px;
@@ -70,4 +65,7 @@ a {
     position: relative;
     bottom: 57px;
     left: 155px;
+}
+.errors {
+    display: inline-block
 }

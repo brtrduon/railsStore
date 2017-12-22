@@ -21,6 +21,13 @@
         </form>
         <a href="/reset">reset password</a>
         <br><br>
+            <% if flash[:errors] %>
+            <ul>
+                <% flash[:errors].each do |i| %>
+                    <li><%= i %></li>
+                <% end %>
+            </ul>
+            <% end %>
         <div class='bot'>
             <p>Not yet registered?</p>
             <a href="/register">Click here</a>

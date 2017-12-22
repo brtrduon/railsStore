@@ -5,9 +5,11 @@ class UsersController < ApplicationController
     end
 
     def login
+
     end
 
     def register
+
     end
 
     def help
